@@ -30,6 +30,11 @@ usage: tap <command> [<args>]
 
 # Hints
 
+You have to configure some values in the file `tap.cfg`
+* `user`: the ssh user
+* `remoteHost`: the host to connect to
+* `remoteAppBase`: the folder in wich all the applications should be stored
+
 You have to authorize your ssh key on your raspberry:
 ```
 ssh-copy-id -i ~/.ssh/<mykey> <user>@<host>
