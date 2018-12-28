@@ -5,19 +5,19 @@ This tool should help to simply distribute applications to a raspberry pi.
 
 # Environment / Use Case
 
-* Windows Notebook with activated WSL (Windows Subsystem for Linux) - ´bash´ is available
+* Windows Notebook with activated WSL (Windows Subsystem for Linux) - `bash` is available
 * Raspberry Pi in local network
 * as a developer I want to deploy and manage my own application on the raspberry
-* I want to use my windows notebook to ´upload´, ´start´, ´stop´, ... applications on the raspberry
-* I don`t want to ´ssh´ every time to the raspberry to do this stuff
+* I want to use my windows notebook to `upload`, `start`, `stop`, ... applications on the raspberry
+* I don`t want to `ssh` every time to the raspberry to do this stuff
 
 # What is an application?
 
-An application is a folder which contains the application artifacts and an executable file ´run.sh´,
+An application is a folder which contains the application artifacts and an executable file `run.sh`,
 which starts the application.
 
 # Functions
-´´´
+```
 usage: tap <command> [<args>]
 
   apps                               List all applications
@@ -26,25 +26,25 @@ usage: tap <command> [<args>]
   start <app-name>                   Start application
   stop <app-name>                    Stop application
   env <app-name>                     Show start script of the application
-´´´
+```
 
 # Hints
 
 You have to authorize your ssh key on your raspberry:
-´´´
+```
 ssh-copy-id -i ~/.ssh/<mykey> <user>@<host>
-´´´
+```
 
 To get this thing running `ssh` and `scp` is used multiple times for a command. So, to not enter
 the credentials every time, enter your credentials for the ssh-agent:
-´´´
+```
 ssh-add
-´´´
+```
 
 If there is no running ssh-agent, start it before with (and `ssh-add` again):
-´´´
-´eval $(ssh-agent)´
-´´´
+```
+`eval $(ssh-agent)`
+```
 
 # Ideas / Notes while Implementation
 
@@ -59,4 +59,4 @@ If there is no running ssh-agent, start it before with (and `ssh-add` again):
     * certificate is needed on raspberry
     * publish certificate to raspberry:
         > ssh-copy-id -i ~/.ssh/mykey user@host
-    * before using any ´tap´ command, run ´ssh-add´
+    * before using any `tap` command, run `ssh-add`
