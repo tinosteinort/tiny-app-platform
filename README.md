@@ -9,7 +9,7 @@ This tool should help to simply distribute applications to a raspberry pi.
 * Raspberry Pi in local network
 * as a developer I want to deploy and manage my own application on the raspberry
 * I want to use my windows notebook to `upload`, `start`, `stop`, ... applications on the raspberry
-* I don`t want to `ssh` every time to the raspberry to do this stuff
+* I don't want to `ssh` every time to the raspberry to do this stuff
 
 # What is an application?
 
