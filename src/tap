@@ -1,0 +1,17 @@
+#!/bin/bash
+
+set -e
+
+SCRIPT_DIR=$(cd `dirname $0` && pwd)
+
+cmd=$SCRIPT_DIR/tap-$1
+
+if [ -x $cmd ]
+then
+    $cmd "${@:2}"
+else
+    echo 'Unknown command'
+    echo ''
+    $SCRIPT_DIR/tap-help
+    exit 1
+fi

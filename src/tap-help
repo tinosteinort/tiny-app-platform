@@ -1,0 +1,12 @@
+#!/bin/bash
+
+set -e
+
+echo 'usage: tap <command> [<args>]'
+echo ''
+echo '  apps                               List all applications'
+echo '  upload <app-name> <artifact-name>  Upload new application'
+echo '  delete <app-name>                  Delete application'
+echo '  start <app-name>                   Start application'
+echo '  stop <app-name>                    Stop application'
+echo '  env <app-name>                     Show start script of the application'
