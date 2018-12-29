@@ -28,9 +28,11 @@ usage: tap <command> [<args>]
   env <app-name>                     Show start script of the application
 ```
 
-# Hints
+# Installation
 
-You have to configure some values in the file `tap.cfg`
+Add the `src/` directory to the `PATH`.
+
+You have to configure some values in the file `src/tap.cfg`
 * `user`: the ssh user
 * `remoteHost`: the host to connect to
 * `remoteAppBase`: the folder in wich all the applications should be stored
