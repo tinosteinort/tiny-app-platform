@@ -48,7 +48,7 @@ ssh-add
 
 If there is no running ssh-agent, start it before with (and `ssh-add` again):
 ```
-`eval $(ssh-agent)`
+eval "$(ssh-agent)"
 ```
 
 # Ideas / Notes while Implementation
