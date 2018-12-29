@@ -31,7 +31,7 @@ checkIfRunScriptExist() {
 checkIfArtifactIsFolder
 checkIfRunScriptExist
 
-echo "Create '$appName' on remote host"
+echo "Prepare '$appName' on remote host"
 execScriptRemote "$SCRIPT_DIR/remote/init-or-update-app.sh" $remoteAppBase $appName
 
 echo "upload '$artifactName' as '$appName'"

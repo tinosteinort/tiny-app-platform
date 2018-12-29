@@ -1,0 +1,2 @@
+export APPNAME="Test Application"
+export PORT="8080"

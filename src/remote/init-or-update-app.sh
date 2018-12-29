@@ -55,6 +55,7 @@ fi
 project="$appbase/$appname"
 projectBin="$project/bin"
 pidFile="$project/PID"
+envcfg="$project/environment.cfg"
 
 # Do not update if the application is running -> exit with 1
 if [ -e "$pidFile" ]
@@ -67,6 +68,14 @@ then
         echo "Could no update application, because application is running"
         exit 1
     fi
+fi
+
+# Init environment.cfg
+if [ ! -e "$envcfg" ]
+then
+    touch "$envcfg"
+    echo "# Define variables in the following way (don't miss the 'export'):" >> "$envcfg"
+    echo "#   export VAR_NAME=\"VALUE\"" >> "$envcfg" >> "$envcfg"
 fi
 
 # Delete old files

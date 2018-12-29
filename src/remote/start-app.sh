@@ -36,6 +36,11 @@ deletePidFile() {
 startApplication() {
     deletePidFile
 
+    if [ -e "$envFile" ]
+    then
+        . "$envFile"
+    fi
+
     nohup $runScript &>/dev/null &
     local appPID
     appPID=$!
@@ -82,6 +87,7 @@ then
     projectBin="$project/bin"
     runScript="$projectBin/run.sh"
     pidFile="$project/PID"
+    envFile="$project/environment.cfg"
 
     if [ -x $runScript ]
     then

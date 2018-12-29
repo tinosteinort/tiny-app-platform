@@ -4,7 +4,7 @@ set -e
 
 SCRIPT_DIR=$(cd `dirname $0` && pwd)
 
-cmd=$SCRIPT_DIR/tap-$1
+cmd="$SCRIPT_DIR/tap-$1"
 
 if [ -x $cmd ]
 then
