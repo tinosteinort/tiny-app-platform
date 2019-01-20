@@ -58,6 +58,8 @@ You have to authorize your ssh key on your raspberry:
 ssh-copy-id -i ~/.ssh/<mykey> <user>@<host>
 ```
 
+You have to create the `remoteAppBase` folder on the server manually.
+
 ### Simplify usage on client side
 To get this thing running `ssh` and `scp` is used multiple times for a command. So, to not enter
 the credentials every time, enter your credentials for the ssh-agent:
@@ -78,19 +80,3 @@ eval "$(ssh-agent)"
 * as a developer I want to deploy and manage my own application on the raspberry
 * I want to use my windows notebook to `upload`, `start`, `stop`, ... applications on the raspberry
 * I don't want to `ssh` every time to the raspberry to do this stuff
-
-
-# Ideas / Notes while Implementation
-
-* start script per application needed
-* needed parameters of the app must be defined somehow (part of the application code?)
-* save parameter (should be able to stop and start the application without querying for params)
-* when application is started, write PID into a file
-* when the tool should check which apps are running, the PID file can be used to check if there is a running
-  process with this PID
-* Username and password is required for the remote commands
-    * to not enter password every time, use ssh agent
-    * certificate is needed on raspberry
-    * publish certificate to raspberry:
-        > ssh-copy-id -i ~/.ssh/mykey user@host
-    * before using any `tap` command, run `ssh-add`
