@@ -41,7 +41,7 @@ startApplication() {
         . "$envFile"
     fi
 
-    nohup $runScript &>/dev/null &
+    nohup $runScript &>$logFile &
     local appPID
     appPID=$!
 
@@ -88,6 +88,7 @@ then
     runScript="$projectBin/run.sh"
     pidFile="$project/PID"
     envFile="$project/environment.cfg"
+    logFile="$project/logs.txt"
 
     if [ -x $runScript ]
     then
