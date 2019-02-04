@@ -1,10 +1,10 @@
 # TODOs
 [ ] If there are no apps, `tap apps` shows at least one line with `*    - not started`
-[ ] `tap stop <appname>` does not work correctly for a sample embedded tomcat java application.
+[X] `tap stop <appname>` does not work correctly for a sample embedded tomcat java application.
     * PID file is removed
     * but application is still running.
     * consider: `kill -9` ?
-    * Maybe it is a problem because the tomcat is running
+    * [X] Maybe it is a problem because the tomcat is running
 [X] new commands:
         [X] tap log <appname>       -> cat logs.txt
         [X] tap log <appname> tail  -> tail -f logs.txt

@@ -47,7 +47,7 @@ stopApplication() {
     local pid
     pid=$1
 
-    kill $pid
+    kill -9 $pid
     deletePidFile
 }
 
