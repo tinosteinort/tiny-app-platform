@@ -50,7 +50,8 @@ Add the `src/` directory to the `PATH`.
 You have to configure some values in the file `src/tap.cfg`
 * `user`: the ssh user
 * `remoteHost`: the host to connect to
-* `remoteAppBase`: the folder in wich all the applications should be stored
+* `remotePort`: the port of the remote host
+* `remoteAppBase`: the folder in which all the applications should be stored
 
 ### Prepare your SSH environment on your server
 You have to authorize your ssh key on your raspberry:

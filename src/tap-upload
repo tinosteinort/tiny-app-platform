@@ -35,5 +35,5 @@ echo "Prepare '$appName' on remote host"
 execScriptRemote "$SCRIPT_DIR/remote/init-or-update-app.sh" $remoteAppBase $appName
 
 echo "upload '$artifactName' as '$appName'"
-scp -r $artifactName/ $user@$remoteHost:$remoteAppBase/$appName/$artifactName
+scp -P $remotePort -r $artifactName/ $user@$remoteHost:$remoteAppBase/$appName/$artifactName
 execRemote "mv $remoteAppBase/$appName/$artifactName $remoteAppBase/$appName/bin"

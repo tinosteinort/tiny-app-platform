@@ -10,7 +10,7 @@ execScriptRemote() {
     scriptFile=$1
     params="${@:2}"
 
-    ssh "$user@$remoteHost" "bash -s" -- < "$scriptFile" "$params"
+    ssh -p $remotePort "$user@$remoteHost" "bash -s" -- < "$scriptFile" "$params"
 }
 
 #
@@ -18,5 +18,5 @@ execScriptRemote() {
 #
 execRemote() {
     command=$1
-    ssh "$user@$remoteHost" "$command"
+    ssh -p $remotePort "$user@$remoteHost" "$command"
 }
