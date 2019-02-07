@@ -19,13 +19,6 @@ readPID() {
     eval "$1='$appPID'"
 }
 
-deletePidFile() {
-    if [ -e $pidFile ]
-    then
-        rm "$pidFile"
-    fi
-}
-
 appIsRunning() {
     local pidToCheck
     readPID pidToCheck     # 'readPID' fills the result into 'pidToCheck'
@@ -48,7 +41,6 @@ stopApplication() {
     pid=$1
 
     kill -9 $pid
-    deletePidFile
 }
 
 cd $appbase
