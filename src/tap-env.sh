@@ -3,12 +3,17 @@
 set -e
 
 SCRIPT_DIR="$(cd `dirname $0` && pwd)"
+. "$SCRIPT_DIR/tap.cfg"
+. "$SCRIPT_DIR/utils.sh"
 
-cmd="$SCRIPT_DIR/tap-$1.sh"
+appname=$1
+envtype=$2
+
+cmd="$SCRIPT_DIR/remote/env-app-$envtype.sh"
 
 if [[ -x ${cmd} ]]
 then
-    "$cmd" "${@:2}"
+    execScriptRemote "$cmd" "$remoteAppBase" "$appname"
 else
     echo 'Unknown command'
     echo ''
