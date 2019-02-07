@@ -11,7 +11,7 @@ NC='\033[0m' # No Color
 readPID() {
     local appPID
 
-    if [ -e $pidFile ]
+    if [ -e ${pidFile} ]
     then
         appPID=$(<"$pidFile")
     else
@@ -23,7 +23,7 @@ readPID() {
 }
 
 deletePidFile() {
-    if [ -e $pidFile ]
+    if [ -e ${pidFile} ]
     then
         rm "$pidFile"
     fi
@@ -33,11 +33,11 @@ appIsRunning() {
     local pidToCheck
     readPID pidToCheck     # 'readPID' fills the result into 'pidToCheck'
 
-    if [ -z "$pidToCheck" ]  # if pidToCheck is empty (this is the case if there is no PID file)
+    if [[ -z "$pidToCheck" ]]  # if pidToCheck is empty (this is the case if there is no PID file)
     then
         eval "$1=false"
     else
-        if ps -p $pidToCheck > /dev/null  # Checks if there is a process with this PID
+        if ps -p "$pidToCheck" > /dev/null  # Checks if there is a process with this PID
         then
             eval "$1=true"
         else
@@ -59,7 +59,7 @@ printRunningInfo() {
     local formatting
     formatting=''
 
-    if [ "$running" = true ]
+    if [[ "$running" = true ]]
     then
         status="running"
         formatting="${GREEN}%-30s${NC}"
@@ -75,7 +75,7 @@ cd "$appbase"
 
 for dir in */
 do
-    dir=${dir%*/}
+    dir="${dir%*/}"
     projectName="${dir##*/}"
 
     project="$appbase/$projectName"
@@ -84,10 +84,10 @@ do
     running=false
     appIsRunning running
 
-    if [ "$running" = false ]
+    if [[ "$running" = false ]]
     then
         deletePidFile
     fi
-    printRunningInfo $projectName $running
+    printRunningInfo "$projectName" "$running"
 
 done

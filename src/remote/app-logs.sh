@@ -7,16 +7,16 @@ appname=$2
 logparam=$3
 
 
-cd $appbase
+cd "$appbase"
 
-if [ -e $appname ]
+if [[ -e ${appname} ]]
 then
     project="$appbase/$appname"
     logFile="$project/logs.txt"
 
-    if [ -e $logFile ]
+    if [[ -e ${logFile} ]]
     then
-        if [ "$logparam" = "tail" ]
+        if [[ "$logparam" = "tail" ]]
         then
             tail -f "$logFile"
         else

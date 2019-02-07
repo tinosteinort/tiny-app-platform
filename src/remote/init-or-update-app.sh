@@ -8,7 +8,7 @@ appname=$2
 readPID() {
     local appPID
 
-    if [ -e $pidFile ]
+    if [[ -e ${pidFile} ]]
     then
         appPID=$(<"$pidFile")
     else
@@ -23,11 +23,11 @@ appIsRunning() {
     local pidToCheck
     readPID pidToCheck     # 'readPID' fills the result into 'pidToCheck'
 
-    if [ -z "$pidToCheck" ]  # if pidToCheck is empty (this is the case if there is no PID file)
+    if [[ -z "$pidToCheck" ]]  # if pidToCheck is empty (this is the case if there is no PID file)
     then
         eval "$1=false"
     else
-        if ps -p $pidToCheck > /dev/null  # Checks if there is a process with this PID
+        if ps -p "$pidToCheck" > /dev/null  # Checks if there is a process with this PID
         then
             eval "$1=true"
         else
@@ -37,17 +37,17 @@ appIsRunning() {
 }
 
 deleteProjectBin() {
-    if [ -e "$projectBin" ]
+    if [[ -e "$projectBin" ]]
     then
         rm -r "$projectBin"
     fi
 }
 
 
-cd $appbase
+cd "$appbase"
 
 # Init empty application
-if [ ! -e "$appname" ]
+if [[ ! -e "$appname" ]]
 then
     mkdir "$appname"
 fi
@@ -58,12 +58,12 @@ pidFile="$project/PID"
 envcfg="$project/environment.cfg"
 
 # Do not update if the application is running -> exit with 1
-if [ -e "$pidFile" ]
+if [[ -e "$pidFile" ]]
 then
     running=false
     appIsRunning running
 
-    if [ "$running" = true ]
+    if [[ "$running" = true ]]
     then
         echo "Could no update application, because application is running"
         exit 1
@@ -71,7 +71,7 @@ then
 fi
 
 # Init environment.cfg
-if [ ! -e "$envcfg" ]
+if [[ ! -e "$envcfg" ]]
 then
     touch "$envcfg"
     echo "# Define variables in the following way (don't miss the 'export'):" >> "$envcfg"

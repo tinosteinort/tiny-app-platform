@@ -5,18 +5,17 @@ set -e
 appbase=$1
 appname=$2
 
-cd $appbase
+cd "$appbase"
 
-if [ -e $appname ]
+if [[ -e ${appname} ]]
 then
     project="$appbase/$appname"
     projectBin="$project/bin"
     runScript="$projectBin/run.sh"
 
-    if [ -x $runScript ]
+    if [[ -x ${runScript} ]]
     then
-        #cat "$runScript"
-        runScriptContent=$(<$runScript)
+        runScriptContent=$(<"$runScript")
         echo "$runScriptContent"
     else
         echo "Missing run file or file is not executable: '$runScript'"
