@@ -15,7 +15,7 @@ then
 
     if [[ -e ${logFile} ]]
     then
-        cat "$logFile"
+        tail -f "$logFile"
     fi
 else
     echo "'$appname' does not exist"
