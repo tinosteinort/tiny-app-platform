@@ -9,4 +9,4 @@ SCRIPT_DIR="$(cd `dirname $0` && pwd)"
 appname=$1
 logparam=$2
 
-execScriptRemote "$SCRIPT_DIR/remote/app-logs.sh" "$remoteAppBase" "$appname" "$logparam"
+execScriptRemoteWithTerminal "$SCRIPT_DIR/remote/app-logs.sh" "$remoteAppBase" "$appname" "$logparam"
