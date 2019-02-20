@@ -18,46 +18,41 @@ readPID() {
         appPID=''
     fi
 
-    # write the value of 'appPID' into to first passed argument -> return value
-    eval "$1='$appPID'"
+    echo "$appPID"
 }
 
 deletePidFile() {
-    if [ -e $pidFile ]
+    if [[ -e $pidFile ]]
     then
         rm "$pidFile"
     fi
 }
 
 appIsRunning() {
-    local pidToCheck
-    readPID pidToCheck     # 'readPID' fills the result into 'pidToCheck'
+    local pidToCheck=`readPID`
+    local running
 
-    if [[ -z $pidToCheck ]]  # if pidToCheck is empty (this is the case if there is no PID file)
+    if [[ -z "$pidToCheck" ]]  # if pidToCheck is empty (this is the case if there is no PID file)
     then
-        eval "$1=false"
+        running=false
     else
         if ps -p "$pidToCheck" > /dev/null  # Checks if there is a process with this PID
         then
-            eval "$1=true"
+            running=true
         else
-            eval "$1=false"
+            running=false
         fi
     fi
+
+    echo "$running"
 }
 
 printRunningInfo() {
-    local appname
-    appname=$1
+    local appname=$1
+    local running=$2
 
-    local running
-    running=$2
-
-    local status
-    status=''
-
-    local formatting
-    formatting=''
+    local status=''
+    local formatting=''
 
     if [[ $running = true ]]
     then
@@ -81,8 +76,7 @@ do
     project="$appbase/$projectName"
     pidFile="$project/PID"
 
-    running=false
-    appIsRunning running
+    running=`appIsRunning`
 
     if [[ $running = false ]]
     then

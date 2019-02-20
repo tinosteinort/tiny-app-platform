@@ -6,8 +6,7 @@ appbase=$1
 appname=$2
 
 savePID() {
-    local pidToSave
-    pidToSave=$1
+    local pidToSave=$1
 
     echo "$pidToSave" > "$pidFile"
 }
@@ -22,8 +21,7 @@ readPID() {
         appPID=''
     fi
 
-    # write the value of 'appPID' into to first passed argument -> return value
-    eval "$1='$appPID'"
+    echo "$appPID"
 }
 
 deletePidFile() {
@@ -49,25 +47,26 @@ startApplication() {
 }
 
 appIsRunning() {
-    local pidToCheck
-    readPID pidToCheck     # 'readPID' fills the result into 'pidToCheck'
+    local pidToCheck=`readPID`
+    local running
 
-    if [[ -z $pidToCheck ]]  # if pidToCheck is empty (this is the case if there is no PID file)
+    if [[ -z "$pidToCheck" ]]  # if pidToCheck is empty (this is the case if there is no PID file)
     then
-        eval "$1=false"
+        running=false
     else
-        if ps -p $pidToCheck > /dev/null  # Checks if there is a process with this PID
+        if ps -p "$pidToCheck" > /dev/null  # Checks if there is a process with this PID
         then
-            eval "$1=true"
+            running=true
         else
-            eval "$1=false"
+            running=false
         fi
     fi
+
+    echo "$running"
 }
 
 startApplicationWithCheck() {
-    local running
-    appIsRunning running
+    local running=`appIsRunning`
 
     if [[ $running = true ]]
     then

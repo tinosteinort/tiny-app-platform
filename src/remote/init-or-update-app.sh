@@ -15,25 +15,26 @@ readPID() {
         appPID=''
     fi
 
-    # write the value of 'appPID' into to first passed argument -> return value
-    eval "$1='$appPID'"
+    echo "$appPID"
 }
 
 appIsRunning() {
-    local pidToCheck
-    readPID pidToCheck     # 'readPID' fills the result into 'pidToCheck'
+    local pidToCheck=`readPID`
+    local running
 
     if [[ -z "$pidToCheck" ]]  # if pidToCheck is empty (this is the case if there is no PID file)
     then
-        eval "$1=false"
+        running=false
     else
         if ps -p "$pidToCheck" > /dev/null  # Checks if there is a process with this PID
         then
-            eval "$1=true"
+            running=true
         else
-            eval "$1=false"
+            running=false
         fi
     fi
+
+    echo "$running"
 }
 
 deleteProjectBin() {
@@ -60,8 +61,7 @@ envcfg="$project/environment.cfg"
 # Do not update if the application is running -> exit with 1
 if [[ -e $pidFile ]]
 then
-    running=false
-    appIsRunning running
+    running=`appIsRunning`
 
     if [[ $running = true ]]
     then
