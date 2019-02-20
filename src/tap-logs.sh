@@ -9,7 +9,7 @@ SCRIPT_DIR="$(cd `dirname $0` && pwd)"
 appname=$1
 logparam=$2
 
-if [[ "$logparam" = "tail" ]]
+if [[ $logparam = "tail" ]]
 then
     # If there is no pseudo tty, the tail process will not be cancelled when the ssh process is cancelled
     execScriptRemoteWithTerminal "$SCRIPT_DIR/remote/app-logs-tail.sh" "$remoteAppBase" "$appname" "$logparam"

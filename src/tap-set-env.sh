@@ -9,7 +9,7 @@ SCRIPT_DIR="$(cd `dirname $0` && pwd)"
 appname=$1
 envfile=$2
 
-if [[ ! -e "$envfile" ]]
+if [[ ! -e $envfile ]]
 then
     echo "'$envfile' does not exist"
     exit 1

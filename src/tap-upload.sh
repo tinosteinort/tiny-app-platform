@@ -10,7 +10,7 @@ appName=$1
 artifactName=$2
 
 checkIfArtifactIsFolder() {
-    if [[ ! -d "$artifactName" ]]
+    if [[ ! -d $artifactName ]]
     then
         echo "Could not upload application"
         echo "Expected is a directory, but '$artifactName' is no directory"
@@ -20,7 +20,7 @@ checkIfArtifactIsFolder() {
 
 checkIfRunScriptExist() {
     local runScript="$artifactName/run.sh"
-    if [[ ! -x "$runScript" ]]
+    if [[ ! -x $runScript ]]
     then
         echo "Could not upload application"
         echo "Requires an executable file 'run.sh' which starts the application"

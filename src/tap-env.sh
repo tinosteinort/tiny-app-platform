@@ -11,7 +11,7 @@ envtype=$2
 
 cmd="$SCRIPT_DIR/remote/env-app-$envtype.sh"
 
-if [[ -x ${cmd} ]]
+if [[ -x $cmd ]]
 then
     execScriptRemote "$cmd" "$remoteAppBase" "$appname"
 else

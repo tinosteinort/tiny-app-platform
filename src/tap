@@ -6,7 +6,7 @@ SCRIPT_DIR="$(cd `dirname $0` && pwd)"
 
 cmd="$SCRIPT_DIR/tap-$1.sh"
 
-if [[ -x ${cmd} ]]
+if [[ -x $cmd ]]
 then
     "$cmd" "${@:2}"
 else

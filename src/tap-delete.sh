@@ -12,7 +12,7 @@ echo "Do you really want to delete '$appname'?"
 echo -n "(y/n): "
 read decision
 
-if [[ "$decision" = "y" ]]
+if [[ $decision = "y" ]]
 then
     execScriptRemote "$SCRIPT_DIR/remote/delete-app.sh" "$remoteAppBase" "$appname"
 fi
