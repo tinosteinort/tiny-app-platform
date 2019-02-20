@@ -7,13 +7,13 @@ appname=$2
 
 cd "$appbase"
 
-if [[ -e ${appname} ]]
+if [[ -e $appname ]]
 then
     project="$appbase/$appname"
     projectBin="$project/bin"
     runScript="$projectBin/run.sh"
 
-    if [[ -x ${runScript} ]]
+    if [[ -x $runScript ]]
     then
         runScriptContent=$(<"$runScript")
         echo "$runScriptContent"

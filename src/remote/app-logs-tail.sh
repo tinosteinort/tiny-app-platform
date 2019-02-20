@@ -8,12 +8,12 @@ appname=$2
 
 cd "$appbase"
 
-if [[ -e ${appname} ]]
+if [[ -e $appname ]]
 then
     project="$appbase/$appname"
     logFile="$project/logs.txt"
 
-    if [[ -e ${logFile} ]]
+    if [[ -e $logFile ]]
     then
         tail -f "$logFile"
     fi

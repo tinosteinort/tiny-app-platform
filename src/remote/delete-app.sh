@@ -7,9 +7,9 @@ appname=$2
 
 cd "$appbase"
 
-if [[ -x ${appname} ]]
+if [[ -x $appname ]]
 then
-    rm -r ${appname}
+    rm -r "$appname"
 else
     echo "'$appname' does not exist"
 fi

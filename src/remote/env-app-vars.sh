@@ -7,12 +7,12 @@ appname=$2
 
 cd "$appbase"
 
-if [[ -e ${appname} ]]
+if [[ -e $appname ]]
 then
     project="$appbase/$appname"
     envcfg="$project/environment.cfg"
 
-    if [[ -e ${envcfg} ]]
+    if [[ -e $envcfg ]]
     then
         envContent=$(<"$envcfg")
         echo "$envContent"

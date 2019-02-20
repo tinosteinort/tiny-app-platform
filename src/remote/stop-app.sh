@@ -8,7 +8,7 @@ appname=$2
 readPID() {
     local appPID
 
-    if [[ -e ${pidFile} ]]
+    if [[ -e $pidFile ]]
     then
         appPID=$(<"$pidFile")
     else
@@ -23,7 +23,7 @@ appIsRunning() {
     local pidToCheck
     readPID pidToCheck     # 'readPID' fills the result into 'pidToCheck'
 
-    if [[ -z "$pidToCheck" ]]  # if pidToCheck is empty (this is the case if there is no PID file)
+    if [[ -z $pidToCheck ]]  # if pidToCheck is empty (this is the case if there is no PID file)
     then
         eval "$1=false"
     else
@@ -55,7 +55,7 @@ stopApplication() {
 
 cd "$appbase"
 
-if [[ -e ${appname} ]]
+if [[ -e $appname ]]
 then
     project="$appbase/$appname"
     pidFile="$project/PID"
@@ -64,12 +64,12 @@ then
     running=false
     appIsRunning running
 
-    if [[ "$running" = true ]]
+    if [[ $running = true ]]
     then
         appPid=''
         readPID appPid
 
-        if [[ -z "$pidToCheck" ]]
+        if [[ -z $pidToCheck ]]
         then
             stopApplication "$appPid"
         fi

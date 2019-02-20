@@ -19,7 +19,7 @@ checkIfArtifactIsFolder() {
 }
 
 checkIfRunScriptExist() {
-    runScript="$artifactName/run.sh"
+    local runScript="$artifactName/run.sh"
     if [[ ! -x "$runScript" ]]
     then
         echo "Could not upload application"
