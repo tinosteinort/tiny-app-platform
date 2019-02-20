@@ -40,7 +40,17 @@ stopApplication() {
     local pid
     pid=$1
 
-    kill -9 "$pid"
+    local psGroupOutput
+    psGroupOutput=$(ps -o pgid -p "$pid")
+    echo 'Determined PGID from:'
+    echo "$psGroupOutput"
+
+    local processGroupId
+    processGroupId=$(echo "$psGroupOutput" | awk '/[0-9]+/ { print $1; }')
+    echo "Determined PGID: $processGroupId"
+
+    echo 'kill processes'
+    pkill -g "$processGroupId"
 }
 
 cd "$appbase"
