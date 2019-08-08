@@ -5,6 +5,7 @@ set -e
 
 SCRIPT_DIR="$(cd `dirname $0` && pwd)"
 CONFIG_FILE="$SCRIPT_DIR/conf/tap.cfg"
+REMOTE_SCRIPT="$SCRIPT_DIR/remote/tap-remote.sh"
 
 # Variables needed to connect to server
 USER=''
@@ -37,8 +38,13 @@ function tap-help() {
     echo '  logs <app-name> tail               Show live log of the application'
 }
 
+function executeRemote() {
+    params="$@"
+    ssh -p "$REMOTE_PORT" "$USER@$REMOTE_HOST" "bash -s" -- < "$REMOTE_SCRIPT" "$params"
+}
+
 function tap-apps() {
-    echo "list all apps"
+    executeRemote tap-apps
 }
 
 function readConfigValues() {
