@@ -9,7 +9,7 @@ DIST_DIR="$SCRIPT_DIR/dist"
 rm -rf "$DIST_DIR"
 mkdir "$DIST_DIR"
 
-cp src/* "$DIST_DIR"
+cp -r src/* "$DIST_DIR"
 
 # Command for user should be without '.sh'
 # Why not work with .sh extension at all?

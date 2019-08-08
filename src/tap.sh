@@ -4,7 +4,7 @@ set -e
 
 
 SCRIPT_DIR="$(cd `dirname $0` && pwd)"
-CONFIG_FILE="$SCRIPT_DIR/tap.cfg"
+CONFIG_FILE="$SCRIPT_DIR/conf/tap.cfg"
 
 # Variables needed to connect to server
 USER=''
@@ -64,7 +64,6 @@ functionExist=`functionNameExist "$tapCommand"`
 if [ "$functionExist" = true ]; then
     # Config values has to be set before the correct function is called
     readConfigValues
-
     "$tapCommand" "$tapCommandParams"
 else
     echo 'Unknown command'
