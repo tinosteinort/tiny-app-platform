@@ -19,9 +19,8 @@ REMOTE_APP_BASE=''
 # E.g:
 #   ./tap help
 #  calls the function 'tap-help'
-tapCommandName=$1
-tapCommand="tap-$tapCommandName"
-tapCommandParams=${@:2}
+tapCommand="tap-$1"
+tapCommandParams="${@:2}"
 
 function tap-help() {
     echo 'usage: tap <command> [<args>]'
@@ -39,8 +38,8 @@ function tap-help() {
 }
 
 function executeRemote() {
-    params="$@"
-    ssh -p "$REMOTE_PORT" "$USER@$REMOTE_HOST" "bash -s" -- < "$REMOTE_SCRIPT" "$params"
+    local params=("$REMOTE_APP_BASE" "$@")
+    ssh -p "$REMOTE_PORT" "$USER@$REMOTE_HOST" "bash -s" -- < "$REMOTE_SCRIPT" "${params[@]}"
 }
 
 function tap-apps() {

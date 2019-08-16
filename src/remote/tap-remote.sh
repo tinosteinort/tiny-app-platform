@@ -2,9 +2,13 @@
 
 set -e
 
-remoteTapCommandName=$1
-remoteTapCommand="remote-$remoteTapCommandName"
-remoteTapCommandParams=${@:2}
+
+REMOTE_APP_BASE="$1"
+remoteTapCommand="remote-$2"
+remoteTapCommandParams="${@:3}"
+
+cd "$REMOTE_APP_BASE/appbase"
+echo "tap app base: " `pwd`
 
 function functionNameExist() {
     local functionName=$1
@@ -17,10 +21,7 @@ function functionNameExist() {
 }
 
 function remote-tap-apps() {
-    echo 'tap apps on remote'
-    hostname
-    pwd
-    tree
+    echo *
 }
 
 functionExist=`functionNameExist "$remoteTapCommand"`
